@@ -1,9 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { AppSidebar } from "@/components/AppSidebar";
+import { useEffect } from "react";
 
 export default function MainLayout() {
+  // const navigate = useNavigate();
+  // const token = localStorage.getItem("item");
+
+  // useEffect (() =>{
+  //   if (!token) {
+  //     navigate("/login");
+  //     return;
+  //   }, [token]);
   return (
     <SidebarProvider>
       {/* Sidebar Navigasi */}

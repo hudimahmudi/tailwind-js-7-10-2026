@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "../../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Button } from "../../components/ui/button";
+import api from "@/services/api.js";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -32,19 +33,11 @@ export default function Login() {
     setIsLoading(true);
 
     try{
-      const res = await fetch ('http://localhost:3000/api/auth/login', {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData)
-      });
-      const result = await res.json();
-      if(!res.ok){
-        throw new Error(result.mesessage || 'please check your email and password')
-      }
-      localStorage.setItem("toket", result.data.token);
+      const res = await api.post ("/auth/login", formData);
+      console.log(res)
+
+     
+      localStorage.setItem("token", res.data.token);
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000);
